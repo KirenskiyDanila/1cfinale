@@ -28,6 +28,7 @@
 
         $nodes = array();
 
+        // представим дерево как массив объектов
         foreach ($lines as $line) {
             $id = explode(' ', $line)[0];
             $name = explode(' ', $line)[1];
@@ -35,15 +36,16 @@
             $rightValue = explode(' ', $line)[3];
             $nodes[] = new Node($id, $name, $leftValue, $rightValue);
         }
-
+        // вычислим максимальное значение среди элементов дерева
         $maxValue = count($nodes) * 2;
         $fileResult = "";
+        // алгоритм обхода дерева
         $level = 0;
         for ($i = 1; $i <= $maxValue; $i++) {
             foreach ($nodes as $node) {
                 if ($node->leftValue == $i) {
                     $level++;
-                    $node->checked = true;
+                    // за каждый уровень добавляем -
                     for ($j = 1; $j < $level; $j++) {
                         $fileResult .= "-";
                     }

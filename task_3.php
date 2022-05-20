@@ -29,7 +29,7 @@
         $banners = array();
 
         $fileResult = "";
-
+        // добавляем баннеры в массив
         foreach ($lines as $line) {
             $name = explode(' ', $line)[0];
             $count = explode(' ', $line)[1];
@@ -38,11 +38,11 @@
         }
 
         $count = 0;
-
+        // считаем их
         foreach ($banners as $banner) {
             $count += $banner->count;
         }
-
+        // вычисляем пропорции для каждого баннера
         foreach ($banners as $banner) {
             $banner->proportion = 1.0 / ($count / $banner->count);
             $fileResult .= $banner->name . " " . round($banner->proportion, 6) . "<br>";
